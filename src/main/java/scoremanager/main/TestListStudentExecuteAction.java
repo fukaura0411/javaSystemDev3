@@ -1,3 +1,4 @@
+//深浦
 package scoremanager.main;
 
 import java.util.ArrayList;
@@ -60,12 +61,12 @@ public class TestListStudentExecuteAction extends Action {
         StudentDao stDao = new StudentDao();
         Student student = stDao.get(f4);
 
-        // 学生が存在しない場合
-        if (student == null) {
-            request.setAttribute("message", "該当する学生が見つかりませんでした");
-            request.getRequestDispatcher("/scoremanager/main/test_list.jsp").forward(request, response);
-            return;
-        }
+		/*// 学生が存在しない場合
+		if (student == null) {
+		    request.setAttribute("message", "該当する学生が見つかりませんでした");
+		    request.getRequestDispatcher("/scoremanager/main/test_list.jsp").forward(request, response);
+		    return;
+		}*/
 
         // 成績一覧を取得
         TestDao tDao = new TestDao();
@@ -73,6 +74,6 @@ public class TestListStudentExecuteAction extends Action {
 
         request.setAttribute("student", student);
         request.setAttribute("testList", testList);
-        request.getRequestDispatcher("/scoremanager/main/test_list_student.jsp").forward(request, response);
+        request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
     }
 }

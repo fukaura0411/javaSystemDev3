@@ -1,3 +1,5 @@
+//　清田ケンジ
+
 package dao;
 
 import java.sql.Connection;
@@ -80,8 +82,7 @@ public class TestDao extends Dao {
             }
         }
     }
-    
-    // 参照で追加
+
     public List<Test> filterBySubject(String schoolCd, Integer entYear, String classNum, String subjectCd) throws Exception {
         List<Test> list = new ArrayList<>();
         Connection connection = getConnection();
@@ -89,10 +90,10 @@ public class TestDao extends Dao {
 
         try {
             StringBuilder sql = new StringBuilder(
-                "select t.*, s.name as student_name, sub.name as subject_name " +
+                "select t.*, s.name as student_name, s.ent_year as ent_year, sub.name as subject_name " +
                 "from test t " +
                 "join student s on TRIM(t.student_no) = TRIM(s.no) " +
-                "join subject sub on t.subject_cd = sub.cd " +
+                "join subject sub on t.subject_cd = sub.cd and t.school_cd = sub.school_cd " +
                 "where t.school_cd = ? and t.point is not null"
             );
 
@@ -134,6 +135,7 @@ public class TestDao extends Dao {
                 test.setClassNum(rSet.getString("class_num"));
                 test.setStudentName(rSet.getString("student_name"));
                 test.setSubjectName(rSet.getString("subject_name"));
+                test.setEntYear(rSet.getInt("ent_year"));
                 list.add(test);
             }
         } catch (Exception e) {
@@ -148,6 +150,7 @@ public class TestDao extends Dao {
         }
         return list;
     }
+
     public List<Test> filterByStudent(String studentNo) throws Exception {
         List<Test> list = new ArrayList<>();
         Connection connection = getConnection();
@@ -155,11 +158,11 @@ public class TestDao extends Dao {
 
         try {
             statement = connection.prepareStatement(
-                "select t.*, s.name as student_name, sub.name as subject_name " +
+                "select t.*, s.name as student_name, s.ent_year as ent_year, sub.name as subject_name " +
                 "from test t " +
                 "join student s on TRIM(t.student_no) = TRIM(s.no) " +
-                "join subject sub on t.subject_cd = sub.cd " +
-                "where t.student_no = ? and t.point is not null " +
+                "join subject sub on t.subject_cd = sub.cd and t.school_cd = sub.school_cd " +
+                "where TRIM(t.student_no) = ? and t.point is not null " +
                 "order by t.subject_cd, t.no"
             );
             statement.setString(1, studentNo);
@@ -175,6 +178,7 @@ public class TestDao extends Dao {
                 test.setClassNum(rSet.getString("class_num"));
                 test.setStudentName(rSet.getString("student_name"));
                 test.setSubjectName(rSet.getString("subject_name"));
+                test.setEntYear(rSet.getInt("ent_year"));
                 list.add(test);
             }
         } catch (Exception e) {

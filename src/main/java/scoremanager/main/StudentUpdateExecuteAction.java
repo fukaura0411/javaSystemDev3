@@ -1,3 +1,4 @@
+//澤村
 package scoremanager.main;
 
 import bean.Student;
@@ -12,7 +13,7 @@ public class StudentUpdateExecuteAction extends Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Student student = new Student();
 		student.setName((String) request.getParameter("name"));
-		student.setClassNum((String) request.getParameter("num"));
+		student.setClassNum((String) request.getParameter("class_num"));
 		String isAttendStr = request.getParameter("is_attend");
 		boolean isAttend=false;
 		if (isAttendStr != null) {

@@ -1,3 +1,5 @@
+//　上地ただし
+
 package dao;
 
 import java.sql.Connection;

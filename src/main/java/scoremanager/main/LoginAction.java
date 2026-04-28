@@ -1,3 +1,5 @@
+//　清田ケンジ
+
 package scoremanager.main;
 
 import jakarta.servlet.http.HttpServletRequest;

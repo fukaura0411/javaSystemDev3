@@ -1,3 +1,5 @@
+//　みんな
+
 package tool;
  
 import jakarta.servlet.http.HttpServletRequest;

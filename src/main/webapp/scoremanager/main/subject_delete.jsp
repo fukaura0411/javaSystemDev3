@@ -1,3 +1,4 @@
+<%--上地 --%>
 <%-- 科目情報削除JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>

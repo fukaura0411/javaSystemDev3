@@ -1,3 +1,5 @@
+//　澤村龍翔
+
 package bean;
 
 public class User {

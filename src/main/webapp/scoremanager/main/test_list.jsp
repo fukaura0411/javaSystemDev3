@@ -1,3 +1,5 @@
+<%--深浦 --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
@@ -6,7 +8,7 @@
     <c:param name="content">
 
         <%-- 画面タイトル --%>
-        <h2>成績参照</h2>
+        <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 
         <div class="border p-3">
 
@@ -22,7 +24,7 @@
                     <%-- 入学年度 --%>
                     <div class="me-2">
                         <label>入学年度</label><br />
-                        <select name="f1">
+                        <select name="f1" style="width: 100px;">
                             <option value="">--------</option>
                             <c:forEach var="year" items="${yearList}">
                                 <option value="${year}">${year}</option>
@@ -33,7 +35,7 @@
                     <%-- クラス --%>
                     <div class="me-2">
                         <label>クラス</label><br />
-                        <select name="f2">
+                        <select name="f2" style="width: 100px;">
                             <option value="">--------</option>
                             <c:forEach var="cls" items="${classList}">
                                 <option value="${cls}">${cls}</option>
@@ -44,7 +46,7 @@
                     <%-- 科目 --%>
                     <div class="me-2">
                         <label>科目</label><br />
-                        <select name="f3">
+                        <select name="f3" style="width: 200px;">
                             <option value="">--------</option>
                             <c:forEach var="subject" items="${subjectList}">
                                 <option value="${subject.cd}">${subject.name}</option>
@@ -58,6 +60,11 @@
                     </div>
 
                 </div>
+
+                <%-- バリデーションエラーメッセージ --%>
+                <c:if test="${not empty message}">
+                    <p style="color: orange;">入学年度とクラスと科目を選択してください</p>
+                </c:if>
 
                 <%-- 科目情報識別コード --%>
                 <input type="hidden" name="f" value="sj" />
@@ -93,11 +100,12 @@
                 <input type="hidden" name="f" value="st" />
 
             </form>
-    
+
         </div>
+
         <%-- 利用方法メッセージ --%>
         <br>
         <p class="text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
-        
+
     </c:param>
 </c:import>

@@ -1,3 +1,5 @@
+//　清田ケンジ
+
 package dao;
 
 import java.sql.Connection;

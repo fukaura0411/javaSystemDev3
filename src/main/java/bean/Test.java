@@ -1,3 +1,5 @@
+//　深浦諒
+
 package bean;
 
 import java.io.Serializable;
@@ -11,8 +13,8 @@ public class Test implements Serializable {
     private String classNum;
     private String studentName;
     private String subjectName;
+    private int entYear;
 
-    // ゲッター、セッター
     public String getStudentNo() { return studentNo; }
     public void setStudentNo(String studentNo) { this.studentNo = studentNo; }
 
@@ -36,4 +38,7 @@ public class Test implements Serializable {
 
     public String getSubjectName() { return subjectName; }
     public void setSubjectName(String subjectName) { this.subjectName = subjectName; }
+
+    public int getEntYear() { return entYear; }
+    public void setEntYear(int entYear) { this.entYear = entYear; }
 }

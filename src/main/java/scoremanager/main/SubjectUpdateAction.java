@@ -1,3 +1,4 @@
+//上地
 package scoremanager.main;
 
 import bean.Subject;
@@ -38,7 +39,7 @@ public class SubjectUpdateAction extends Action {
         }
 
         if (name.isEmpty()) {
-            request.setAttribute("errorMessage", "科目名を入力してください");
+			/*request.setAttribute("errorMessage", "科目名を入力してください");*/
             request.setAttribute("subject", subject);
             request.setAttribute("cd", cd);
             request.getRequestDispatcher("subject_update.jsp").forward(request, response);

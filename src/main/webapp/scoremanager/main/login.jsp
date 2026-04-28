@@ -1,3 +1,5 @@
+<!--清田  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
@@ -25,12 +27,12 @@
     <c:param name="content">
 
         <section class="mx-auto col-md-6 border p-4 mt-5 bg-white shadow-sm">
-            
+
             <%-- 画面タイトル --%>
             <h2 class="h3 mb-4 fw-normal bg-secondary bg-opacity-10 py-2 px-4 text-center">ログイン</h2>
-            
+
             <form method="post" action="LoginExecute.action">
-                
+
                 <%-- 認証エラーメッセージ表示 (赤色を廃止し、画像に合わせた灰色に修正) --%>
                 <c:if test="${!empty errors}">
                     <div class="mb-3 small">
@@ -41,23 +43,21 @@
                         </ul>
                     </div>
                 </c:if>
-			
-                <%-- ID入力欄 --%>
-                <div class="mb-3">
-                    <label class="form-label" for="id">ID</label>
-                    <input class="form-control" type="text" id="id" name="id" 
-                           value="${id}" required maxlength="10" 
-                           placeholder="半角でご入力ください" />
-                </div>
-                
-                <%-- パスワード入力欄 --%>
-                <div class="mb-3">
-                    <label class="form-label" for="password">パスワード</label>
-                    <input class="form-control" type="password" id="password" name="password" 
-                           required maxlength="30" 
-                           placeholder="30文字以内の半角英数でご入力ください" />
-                </div>
-                
+<%-- ID入力欄 --%>
+<div class="form-floating mb-3">
+    <input class="form-control" type="text" id="id" name="id"
+           value="${id}" required maxlength="10"
+           placeholder="ID" style="padding-left: 3rem;" />
+    <label for="id" style="padding-left: 1rem;">ID</label>
+</div>
+
+<%-- パスワード入力欄 --%>
+<div class="form-floating mb-3">
+    <input class="form-control" type="password" id="password" name="password"
+           required maxlength="30"
+           placeholder="パスワード" style="padding-left: 3rem;" />
+    <label for="password" style="padding-left: 1rem;">パスワード</label>
+</div>
                 <%-- パスワード表示チェックボックス --%>
                 <div class="mb-3 text-center">
                     <input type="checkbox" id="chk_d_ps" name="chk_d_ps" />

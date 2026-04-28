@@ -1,9 +1,28 @@
+<%--上地 --%>
 <%-- 成績管理JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <c:import url="/common/base.jsp">
     <c:param name="title">得点管理システム</c:param>
-    <c:param name="scripts"></c:param>
+    <c:param name="scripts">
+        <script>
+        function validatePoints() {
+            var inputs = document.querySelectorAll('input[name="point"]');
+            var valid = true;
+            inputs.forEach(function(input) {
+                var msg = input.parentNode.querySelector('.error-msg');
+                var val = input.value;
+                if (val !== '' && (isNaN(val) || parseInt(val) < 0 || parseInt(val) > 100)) {
+                    msg.style.display = 'block';
+                    valid = false;
+                } else {
+                    msg.style.display = 'none';
+                }
+            });
+            return valid;
+        }
+        </script>
+    </c:param>
     <c:param name="content">
         <section class="me-4">
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
@@ -47,7 +66,7 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="col-1">
+                    <div class="col-auto">
                         <button class="btn btn-secondary" type="submit">検索</button>
                     </div>
                 </div>
@@ -56,7 +75,7 @@
             <%-- 検索結果 --%>
             <c:if test="${tests != null}">
                 <div class="px-4">科目：${subject.name}（${no}回）</div>
-                <form method="post" action="TestRegistExecute.action" class="px-4">
+                <form method="post" action="TestRegistExecute.action" class="px-4" onsubmit="return validatePoints()">
                     <input type="hidden" name="subjectCd" value="${subjectCd}">
                     <input type="hidden" name="classNum" value="${classNum}">
                     <input type="hidden" name="no" value="${no}">
@@ -77,12 +96,13 @@
                                 <td>
                                     <input type="hidden" name="studentNo" value="${test.studentNo}">
                                     <input class="form-control" type="number" name="point"
-                                        value="${test.point}" min="0" max="100">
+                                        value="${test.point}">
+                                    <span class="error-msg" style="display:none; color:orange; font-size:0.85em;">0〜100の範囲で入力してください</span>
                                 </td>
                             </tr>
                         </c:forEach>
                     </table>
-                    <button class="btn btn-primary" type="submit">登録して終了</button>
+                    <button class="btn btn-secondary" type="submit">登録して終了</button>
                 </form>
             </c:if>
         </section>

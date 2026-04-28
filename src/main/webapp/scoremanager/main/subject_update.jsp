@@ -1,3 +1,4 @@
+<%--上地 --%>
 <%-- 科目情報変更JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
@@ -14,14 +15,15 @@
                     <label class="form-label">科目コード</label>
                     <div>${cd}</div>
                 </div>
-                <c:if test="${!empty errorMessage}">
+                
+<%--                 <c:if test="${!empty errorMessage}">
                     <div class="text-danger mb-2">${errorMessage}</div>
-                </c:if>
+                </c:if> --%>
                 <div class="mb-3">
                     <label class="form-label" for="name">科目名</label>
                     <input class="form-control" type="text" id="name" name="name"
                         placeholder="科目名を入力してください"
-                        value="${empty name ? subject.name : name}">
+                        value="${empty name ? subject.name : name}" required>
                 </div>
                 <button class="btn btn-primary" type="submit">変更</button>
                 <a href="SubjectList.action">戻る</a>

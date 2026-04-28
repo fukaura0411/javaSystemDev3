@@ -1,3 +1,5 @@
+//　上地ただし
+
 package bean;
 
 import java.io.Serializable;

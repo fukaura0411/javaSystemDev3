@@ -1,3 +1,5 @@
+//　みんな
+
 package tool;
 
 import java.io.IOException;
@@ -49,7 +51,7 @@ public class FrontController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             // URLを強制的に "/common/error.jsp" に書き換えて移動させる
-            //res.sendRedirect(req.getContextPath() + "/common/error.jsp");
+            	res.sendRedirect(req.getContextPath() + "/common/error.jsp");
         }
     }
 

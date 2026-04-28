@@ -1,3 +1,5 @@
+//　清田ケンジ
+
 package scoremanager.main;
 
 import java.util.HashMap;

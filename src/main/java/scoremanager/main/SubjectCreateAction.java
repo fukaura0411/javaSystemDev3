@@ -1,3 +1,4 @@
+//上地
 package scoremanager.main;
 
 import bean.School;
@@ -27,12 +28,12 @@ public class SubjectCreateAction extends Action {
             return;
         }
 
-        // バリデーション
-        if (cd.isEmpty() || name.isEmpty()) {
-            request.setAttribute("errorMessage", "科目コードと科目名を入力してください");
-            request.getRequestDispatcher("subject_create.jsp").forward(request, response);
-            return;
-        }
+		/*        // バリデーション
+		if (cd.isEmpty() || name.isEmpty()) {
+		    request.setAttribute("errorMessage", "科目コードと科目名を入力してください");
+		    request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+		    return;
+		}*/
 
         // DB保存
         Subject subject = new Subject();

@@ -1,3 +1,4 @@
+//深浦
 package scoremanager.main;
 
 import java.util.ArrayList;
@@ -17,15 +18,14 @@ import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
 public class TestListSubjectExecuteAction extends Action {
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        // セッションからユーザー情報取得
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("teacher");
         School school = teacher.getSchool();
 
-        // ドロップダウン用データを再取得
+        // ▼ 初期データ
         ClassNumDao cnDao = new ClassNumDao();
         List<String> classList = cnDao.filter(school);
 
@@ -42,33 +42,41 @@ public class TestListSubjectExecuteAction extends Action {
         request.setAttribute("subjectList", subjectList);
         request.setAttribute("yearList", yearList);
 
-        // リクエストパラメータ取得
+        // ▼ パラメータ取得
         String f1 = request.getParameter("f1");
         String f2 = request.getParameter("f2");
         String f3 = request.getParameter("f3");
 
-        // バリデーション：全て未選択の場合のみエラー
-        if ((f1 == null || f1.isEmpty()) && (f2 == null || f2.isEmpty()) && (f3 == null || f3.isEmpty())) {
-            request.setAttribute("message", "入学年度・クラス・科目のいずれかを選択してください");
+        request.setAttribute("f1", f1);
+        request.setAttribute("f2", f2);
+        request.setAttribute("f3", f3);
+
+        // ▼ 未入力チェック
+        if ((f1 == null || f1.isEmpty()) ||
+            (f2 == null || f2.isEmpty()) ||
+            (f3 == null || f3.isEmpty())) {
+
+            request.setAttribute("message", "入学年度とクラスと科目を選択してください");
             request.getRequestDispatcher("/scoremanager/main/test_list.jsp").forward(request, response);
             return;
         }
 
-        // 入学年度はIntegerに変換（未選択はnull）
-        Integer entYear = (f1 != null && !f1.isEmpty()) ? Integer.parseInt(f1) : null;
+        Integer entYear = Integer.parseInt(f1);
 
-        // 成績データ取得
+        // データ取得
         TestDao tDao = new TestDao();
         List<Test> testList = tDao.filterBySubject(school.getCd(), entYear, f2, f3);
 
-        // 0件の場合
-        if (testList.isEmpty()) {
-            request.setAttribute("message", "該当する成績情報が存在しませんでした");
-            request.getRequestDispatcher("/scoremanager/main/test_list.jsp").forward(request, response);
-            return;
+        // ここが修正ポイント
+        request.setAttribute("searched", true);
+        request.setAttribute("testList", testList);
+
+        // データがあるときだけ科目名セット
+        if (!testList.isEmpty()) {
+            request.setAttribute("subjectName", testList.get(0).getSubjectName());
         }
 
-        request.setAttribute("testList", testList);
-        request.getRequestDispatcher("/scoremanager/main/test_list_subject.jsp").forward(request, response);
+        // 常に同じ画面へ
+        request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
     }
 }
