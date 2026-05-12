@@ -43,9 +43,9 @@ public class TestRegistAction extends Action {
         SubjectDao subjectDao = new SubjectDao();
         List<Subject> subjectSet = subjectDao.filter(school);
 
-        // 回数リスト（1〜10）
+        // 回数リスト（1〜2）
         List<Integer> noSet = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 2; i++) {
             noSet.add(i);
         }
 

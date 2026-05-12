@@ -11,5 +11,8 @@
     <div class="mt-3">
         <a href="${pageContext.request.contextPath}/scoremanager/main/SubjectList.action">科目管理</a>
     </div>
+    <div class="mt-3">
+        <a href="${pageContext.request.contextPath}/scoremanager/main/ClassList.action">クラス管理</a>
+    </div>
 
 </div>
