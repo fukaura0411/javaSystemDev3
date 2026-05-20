@@ -105,6 +105,10 @@
                     <button class="btn btn-secondary" type="submit">登録して終了</button>
                 </form>
             </c:if>
+            <%-- 選択してない時 --%>
+			<c:if test="${tests == null && (entYear != null || classNum != null || subjectCd != null || no != null)}">
+    			<p class="px-4" style="color:red;">全ての項目を選択してください</p>
+			</c:if>
         </section>
     </c:param>
 </c:import>
